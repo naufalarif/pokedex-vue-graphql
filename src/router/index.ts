@@ -8,6 +8,12 @@ const router = createRouter({
       name: 'home',
       component: () => import('../views/HomeView.vue')
     },
+    {
+      path: '/:slug',
+      name: 'pokemon',
+      props: true,
+      component: () => import('../views/PokemonView.vue')
+    },
   ]
 })
 

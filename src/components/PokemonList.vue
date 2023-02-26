@@ -31,7 +31,8 @@ export default {
     },
     filterPokemon() {
       return this.result.pokemon_v2_pokemonsprites.filter((pokemon: any) => 
-        pokemon.pokemon_v2_pokemon.name.includes(this.query))
+        pokemon.pokemon_v2_pokemon.name.includes(this.query) || pokemon.id === Number(this.query)
+      )
     },
   },
   setup() {
@@ -55,9 +56,7 @@ export default {
     <p>Something went wrong</p>
   </div>
   <div v-if="result" class="list-pokemon">
-    <div v-for="pokemon in !query ? displayPokemon : filterPokemon" :key="pokemon.id" class="pokemon">
-      <PokemonItem :pokemon="pokemon" />
-    </div>
+    <PokemonItem v-for="pokemon in !query ? displayPokemon : filterPokemon" :key="pokemon.id" :pokemon="pokemon" />
   </div>
 </template>
 
@@ -66,10 +65,7 @@ export default {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 1.3%;
     margin-top: 3rem;
-  }
-  .pokemon {
-    flex: 24%;
   }
 </style>
